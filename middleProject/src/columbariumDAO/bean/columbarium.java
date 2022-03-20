@@ -1,18 +1,13 @@
 package columbariumDAO.bean;
 
 public class columbarium {
-	private int number;
+	
 	private String town;
 	private String publicOrPrivacy;
 	private String owner;
 	private String facilityName;
 	private String telephone;
-	public int getNumber() {
-		return number;
-	}
-	public void setNumber(int number) {
-		this.number = number;
-	}
+	
 	public String getTown() {
 		return town;
 	}
@@ -45,7 +40,7 @@ public class columbarium {
 	}
 	@Override
 	public String toString() {
-		return "facility [number=" + number + ", town=" + town + ", publicOrPrivacy=" + publicOrPrivacy + ", owner="
+		return "facility [town=" + town + ", publicOrPrivacy=" + publicOrPrivacy + ", owner="
 				+ owner + ", facilityName=" + facilityName + ", telephone=" + telephone + "]";
 	}
 	

@@ -1,4 +1,4 @@
-package method;
+package method.Database;
 
 import SQL.CRUD_Database;
 
