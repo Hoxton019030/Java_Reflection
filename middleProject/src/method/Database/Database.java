@@ -1,4 +1,4 @@
-package SQL;
+package method.Database;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -7,10 +7,10 @@ import java.sql.Statement;
 import ConnectSql.MyConnection;
 import ConnectSql.Myconnection_noDatabaseImp;
 
-public class CRUD_Database {
+public class Database {
 
 	public void createDatabase() {
-		String sql ="CREATE DATABASE Columbarium ";
+		String sql = "CREATE DATABASE Columbarium ";
 		try {
 			MyConnection myconn = new Myconnection_noDatabaseImp();
 			Connection conn = myconn.getConnect();
@@ -22,8 +22,9 @@ public class CRUD_Database {
 			e.printStackTrace();
 		}
 	}
-	public void DropDatabase() {
-		String sql ="Drop DATABASE Columbarium ";
+
+	public void dropDatabase() {
+		String sql = "Drop DATABASE Columbarium ";
 		try {
 			MyConnection myconn = new Myconnection_noDatabaseImp();
 			Connection conn = myconn.getConnect();
@@ -36,6 +37,5 @@ public class CRUD_Database {
 			e.printStackTrace();
 		}
 	}
-	
 
 }

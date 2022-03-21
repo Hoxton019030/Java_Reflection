@@ -8,9 +8,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import ConnectSql.MyConnection_withDatabaseImp;
 import columbariumDAO.columbariumDAO;
 import columbariumDAO.bean.columbarium;
+import url.Url;
 
 public class columbaruumDAOImpl implements columbariumDAO {
 
@@ -51,6 +56,106 @@ public class columbaruumDAOImpl implements columbariumDAO {
 	}
 
 	@Override
+	public boolean addJsoncolumbarium() {
+		String sql = "INSERT INTO[dbo].[ColumbariumTable] VALUES(?,?,?,?,?)";
+		boolean succeed = false;
+		MyConnection_withDatabaseImp myconn = new MyConnection_withDatabaseImp();
+		Connection conn = myconn.getConnect();
+
+		Url url = new Url();
+		String jString = url.getJsonString();
+
+		try {
+			JSONArray jArray = new JSONArray(jString);
+
+			for (int i = 0; i < jArray.length(); i++) {
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				
+				columbarium col = new columbarium();
+				JSONObject jObject = jArray.getJSONObject(i);
+				String town = jObject.getString("鄉鎮市");
+				String publicOrPrivacy = jObject.getString("公立或私立");
+				String owner = jObject.getString("設施管理者");
+				String facilityName = jObject.getString("設施名稱");
+				String telephone = jObject.getString("電話");
+				
+				pstmt.setString(1, town);
+				pstmt.setString(2, publicOrPrivacy);
+				pstmt.setString(3, owner);
+				pstmt.setString(4, facilityName);
+				pstmt.setString(5, telephone);
+				int count = pstmt.executeUpdate();
+				
+				if (count > 1) {
+					succeed = true;
+				}
+
+			}
+			System.out.println("Json Data has been inserted");
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return succeed;
+	}
+
+	@Override
+	public boolean updateColumbarium(columbarium c) {
+		String sql = "UPDATE [dbo].[ColumbariumTable]\r\n" + "   SET [鄉鎮市] = ?" + "      ,[公立或私立] = ?"
+				+ "      ,[設施管理者] = ?" + "      ,[設施名稱] = ?" + "      ,[電話] = ?" + " WHERE 編號=?";
+		boolean succeed = false;
+		MyConnection_withDatabaseImp myconn = new MyConnection_withDatabaseImp();
+		Connection conn = myconn.getConnect();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, c.getTown());
+			pstmt.setString(2, c.getPublicOrPrivacy());
+			pstmt.setString(3, c.getOwner());
+			pstmt.setString(4, c.getFacilityName());
+			pstmt.setString(5, c.getTelephone());
+			pstmt.setInt(6, c.getNumber());
+			int count = pstmt.executeUpdate();
+			if (count > 1)
+				succeed = true;
+			myconn.free(conn, pstmt, null);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		// TODO Auto-generated method stub
+		return succeed;
+	}
+
+	@Override
+	public boolean deleteColumbarium(int columbariumid) {
+		String sql = "DELETE FROM [dbo].[ColumbariumTable]\r\n" + "      WHERE 編號=? " + "GO\r\n";
+		boolean succeed = false;
+		MyConnection_withDatabaseImp myconn = new MyConnection_withDatabaseImp();
+		Connection conn = myconn.getConnect();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, columbariumid);
+			int count = pstmt.executeUpdate();
+			if (count >= 1) {
+				succeed = true;
+			}
+			myconn.free(conn, pstmt, null);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		// TODO Auto-generated method stub
+		return succeed;
+	}
+
+
 	public boolean addcolumbarium(columbarium c) {
 		String sql = "INSERT INTO[dbo].[ColumbariumTable] VALUES(?,?,?,?,?)\r\n" + "";
 		boolean succeed = false;
@@ -75,24 +180,6 @@ public class columbaruumDAOImpl implements columbariumDAO {
 		}
 		// TODO Auto-generated method stub
 		return succeed;
-	}
-
-	@Override
-	public boolean updateColumbarium(columbarium c) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean deleteColumbarium(int columbariumid) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean addJsoncolumbarium() {
-		return false;
-	
 	}
 
 }

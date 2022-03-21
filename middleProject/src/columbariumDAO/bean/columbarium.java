@@ -7,6 +7,7 @@ public class columbarium {
 	private String owner;
 	private String facilityName;
 	private String telephone;
+	private int number;
 	
 	public String getTown() {
 		return town;
@@ -42,6 +43,12 @@ public class columbarium {
 	public String toString() {
 		return "靈骨塔資料 [鄉鎮市=" + town + ",公立或私立=" + publicOrPrivacy + ", 設施管理者="
 				+ owner + ", 設施名稱=" + facilityName + ", 電話=" + telephone + "]\n";
+	}
+	public int getNumber() {
+		return number;
+	}
+	public void setNumber(int number) {
+		this.number = number;
 	}
 	
 	

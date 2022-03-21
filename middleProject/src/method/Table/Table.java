@@ -1,4 +1,4 @@
-package SQL;
+package method.Table;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -7,12 +7,13 @@ import java.sql.Statement;
 import ConnectSql.MyConnection;
 import ConnectSql.MyConnection_withDatabaseImp;
 
-public class CRUD_Table {
+public class Table {
 
-	public void CreateTable() {
+	public void createTable() {
+
 		String sql = "USE Columbarium\r\n" + "Create table ColumbariumTable\r\n"
 				+ "(編號 int NOT NULL IDENTITY PRIMARY KEY,\r\n" + "鄉鎮市 varchar(10),\r\n" + "公立或私立 varchar(10),\r\n"
-				+"設施管理者 varchar(50),\r\n" + "設施名稱 varchar(50),\r\n" + "電話 char(12)\r\n" + ")";
+				+ "設施管理者 varchar(50),\r\n" + "設施名稱 varchar(50),\r\n" + "電話 char(12)\r\n" + ")";
 		try {
 			MyConnection myconn = new MyConnection_withDatabaseImp();
 			Connection conn = myconn.getConnect();
@@ -25,9 +26,10 @@ public class CRUD_Table {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 	}
 
-	public void DropTable() {
+	public void dropTable() {
 		String sql = "USE Columbarium\r\n" + "Drop table ColumbariumTable\r\n";
 		try {
 			MyConnection myconn = new MyConnection_withDatabaseImp();
@@ -43,6 +45,7 @@ public class CRUD_Table {
 		}
 
 		// TODO Auto-generated catch block
+
 	}
 
 }
