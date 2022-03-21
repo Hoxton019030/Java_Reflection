@@ -14,6 +14,8 @@ public interface columbariumDAO {
 	boolean updateColumbarium(columbarium c);
     //刪除
 	boolean deleteColumbarium(int columbariumid);
+	//新增Json資料
+	boolean addJsoncolumbarium();
 	
 
 	

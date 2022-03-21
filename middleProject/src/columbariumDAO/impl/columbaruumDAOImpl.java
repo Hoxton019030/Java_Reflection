@@ -33,13 +33,13 @@ public class columbaruumDAOImpl implements columbariumDAO {
 			while (rs.next()) {
 				columbarium c = new columbarium();
 				c.setTown(rs.getString("鄉鎮市"));
-				c.setPublicOrPrivacy("公立或私立");
-				c.setFacilityName("設施管理者");
-				c.setFacilityName("設施名稱");
-				c.setTelephone("電話");
+				c.setPublicOrPrivacy(rs.getString("公立或私立"));
+				c.setOwner(rs.getString("設施管理者"));
+				c.setFacilityName(rs.getString("設施名稱"));
+				c.setTelephone(rs.getString("電話"));
 				columbariumList.add(c);
 			}
-			
+
 			myconn.free(conn, stmt, rs);
 
 		} catch (SQLException e) {
@@ -52,7 +52,7 @@ public class columbaruumDAOImpl implements columbariumDAO {
 
 	@Override
 	public boolean addcolumbarium(columbarium c) {
-		String sql = "INSERT INTO[dbo].[ColumbariumTable] VALUES(?,?,?,?)\r\n" + "";
+		String sql = "INSERT INTO[dbo].[ColumbariumTable] VALUES(?,?,?,?,?)\r\n" + "";
 		boolean succeed = false;
 		MyConnection_withDatabaseImp myconn = new MyConnection_withDatabaseImp();
 		Connection conn = myconn.getConnect();
@@ -60,8 +60,9 @@ public class columbaruumDAOImpl implements columbariumDAO {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, c.getTown());
 			pstmt.setString(2, c.getPublicOrPrivacy());
-			pstmt.setString(3, c.getFacilityName());
-			pstmt.setString(4, c.getTelephone());
+			pstmt.setString(3, c.getOwner());
+			pstmt.setString(4, c.getFacilityName());
+			pstmt.setString(5, c.getTelephone());
 			int count = pstmt.executeUpdate();
 			if (count > 1) {
 				succeed = true;
@@ -86,6 +87,12 @@ public class columbaruumDAOImpl implements columbariumDAO {
 	public boolean deleteColumbarium(int columbariumid) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public boolean addJsoncolumbarium() {
+		return false;
+	
 	}
 
 }

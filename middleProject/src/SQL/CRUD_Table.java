@@ -11,8 +11,8 @@ public class CRUD_Table {
 
 	public void CreateTable() {
 		String sql = "USE Columbarium\r\n" + "Create table ColumbariumTable\r\n"
-				+ "(編號 int NOT NULL IDENTITY PRIMARY KEY,\r\n" + "鄉鎮市 varchar(10),\r\n" + "公立或私立 char(10),\r\n"
-				+ "設施名稱 varchar(50),\r\n" + "電話 varchar(12)\r\n" + ")";
+				+ "(編號 int NOT NULL IDENTITY PRIMARY KEY,\r\n" + "鄉鎮市 varchar(10),\r\n" + "公立或私立 varchar(10),\r\n"
+				+"設施管理者 varchar(50),\r\n" + "設施名稱 varchar(50),\r\n" + "電話 char(12)\r\n" + ")";
 		try {
 			MyConnection myconn = new MyConnection_withDatabaseImp();
 			Connection conn = myconn.getConnect();
