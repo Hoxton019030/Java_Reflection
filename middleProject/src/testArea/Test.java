@@ -12,7 +12,8 @@ public class Test {
 		Meun meun = new Meun();
 		columbariumDAO cDAO = new columbariumDAOImpl();
 		columbarium c = new columbarium();
-		cDAO.selectColumbariums(13);
+//		meun.createUpdateMeun();
+		cDAO.selectAllColumbarium();
 
 		
 		

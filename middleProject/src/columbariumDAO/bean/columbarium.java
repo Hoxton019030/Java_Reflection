@@ -25,7 +25,7 @@ public class columbarium {
 	public void setPublicOrPrivacy(String publicOrPrivacy) {
 		if(publicOrPrivacy.equals("私立")||publicOrPrivacy.equals("公立")){
 			this.publicOrPrivacy = publicOrPrivacy;
-		;;}else {
+		}else {
 			System.out.println("只能輸入[私立]或是[公立]兩個字喔！");
 		}
 		
@@ -64,7 +64,7 @@ public class columbarium {
 	@Override
 	public String toString() {
 		return "靈骨塔資料 鄉鎮市=" + town + ",公立或私立=" + publicOrPrivacy + ", 設施管理者="
-				+ owner + ", 設施名稱=" + facilityName + ", 電話=" + telephone + "";
+				+ owner + ", 設施名稱=" + facilityName + ", 電話=" + telephone + "\n";
 	}
 	public String getNumber() {
 		return number;

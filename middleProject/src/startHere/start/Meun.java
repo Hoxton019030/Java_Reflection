@@ -8,6 +8,7 @@ import columbariumDAO.impl.columbariumDAOImpl;
 public class Meun {
 
 	public void createStartMeun() {
+		Meun meun = new Meun();
 		Scanner scn = new Scanner(System.in);
 		System.out.println("想做什麼呢?請輸入[1-5]來進入選單。");
 		System.out.println("1.新增資料。");
@@ -19,7 +20,14 @@ public class Meun {
 		int i = scn.nextInt();
 		switch (i) {
 		case 1:
-
+			meun.createUpdateMeun();
+			break;
+		case 2:
+			break;
+		case 3:
+			meun.createUpdateMeun();
+			break;
+			
 		}
 
 	}
@@ -46,23 +54,19 @@ public class Meun {
 	public void createFindMeun() {
 
 	}
-	
+
 	public void createUpdateMeun() {
 		Scanner scn = new Scanner(System.in);
 		columbarium c = new columbarium();
 		columbariumDAOImpl cDAO = new columbariumDAOImpl();
 		cDAO.selectAllColumbarium();
+		System.out.println(1);
 		System.out.println("請問要更新第幾筆資料呢?");
 		int NumberOfUpdate = scn.nextInt();
-		System.out.println("目前的鄉鎮市為: "+cDAO.selectColumbariums(NumberOfUpdate));
+		cDAO.selectColumbariums(NumberOfUpdate);
+		System.out.println("目前的鄉鎮市為: "+c.getTown()); //這句有問題
 		c.setTown(scn.nextLine());
-		
-		
 		cDAO.updateColumbarium(c);
-		
-		
-
-
 	}
 
 	public void createDeleteMenu() {
@@ -74,7 +78,5 @@ public class Meun {
 		int NumberOfDelete = scn.nextInt();
 		cDAO.deleteColumbarium(NumberOfDelete);
 		System.out.println("第" + NumberOfDelete + "筆資料已經刪除。");
-
 	}
-
 }

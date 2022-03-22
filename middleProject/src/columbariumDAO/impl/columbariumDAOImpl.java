@@ -38,6 +38,7 @@ public class columbariumDAOImpl implements columbariumDAO {
 				c.setFacilityName(rs.getString("設施名稱"));
 				c.setTelephone(rs.getString("電話"));
 				columbariumList.add(c);
+				
 			}
 			System.out.println(columbariumList);
 
@@ -67,12 +68,11 @@ public class columbariumDAOImpl implements columbariumDAO {
 				c.setNumber(rs.getString("編號"));
 				c.setTown(rs.getString("鄉鎮市"));
 				c.setPublicOrPrivacy(rs.getString("公立或私立"));
-				c.setOwner(rs.getString("設施名稱"));
+				c.setOwner(rs.getString("設施管理者"));
 				c.setFacilityName(rs.getString("設施名稱"));
 				c.setTelephone(rs.getString("電話"));
 				colList.add(c);
 			}
-			System.out.println(colList);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
