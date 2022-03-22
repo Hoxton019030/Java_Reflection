@@ -6,7 +6,12 @@ import columbariumDAO.bean.columbarium;
 
 public interface columbariumDAO {
 	// 查詢
-	columbarium selectColumbariumById(int columbariumid);
+	List<columbarium> selectColumbariums(int i);
+	
+	
+	columbarium selectColumbariums(String s);
+	columbarium selectColumbariums();
+	
 	List<columbarium> selectAllColumbarium();
 	//新增
 	boolean addcolumbarium(columbarium c);

@@ -1,7 +1,7 @@
 package startHere.beforeStart;
 
 import columbariumDAO.columbariumDAO;
-import columbariumDAO.impl.columbaruumDAOImpl;
+import columbariumDAO.impl.columbariumDAOImpl;
 import method.Database.Database;
 import method.Table.Table;
 
@@ -11,7 +11,7 @@ public class BeforeStart {
 	public static void main(String[] args) {
 		Table table = new Table();
 		Database database = new Database();
-		columbariumDAO cDAO = new columbaruumDAOImpl();
+		columbariumDAO cDAO = new columbariumDAOImpl();
 		
 //		1.創建資料庫
 		database.createDatabase();
